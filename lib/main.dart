@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'LingTab',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
@@ -85,10 +85,9 @@ class _MyHomePageState extends State<MyHomePage> {
   late Future<AccountBalance> futureAccountBalance;
 
   Future<AccountBalance> fetchBalance() async {
-    final response =
-        await http.get(Uri.parse('http://sid.local:1080/api/transactions'));
+    final response = await http
+        .get(Uri.parse('https://lingtab.cambridgelogic.com/api/transactions'));
 
-    print(response.body);
     if (response.statusCode == 200) {
       return AccountBalance.fromJSON(
           jsonDecode(response.body) as Map<String, dynamic>);
